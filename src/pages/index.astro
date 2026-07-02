@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { getPhotos } from '../lib/photos';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft)).map((post) => ({
+  type: 'post' as const,
+  date: post.data.date,
+  post,
+}));
+
+const photos = (await getPhotos()).map((photo) => ({
+  type: 'photo' as const,
+  date: photo.date,
+  photo,
+}));
+
+const items = [...posts, ...photos].sort((a, b) => b.date.getTime() - a.date.getTime());
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Base description="Long Walk Home — writing and photos by Ryan Hoffman">
+  <ul class="feed">
+    {
+      items.map((item) =>
+        item.type === 'post' ? (
+          <li class="feed-item post-item">
+            <div class="meta">{fmt(item.date)}</div>
+            <h2>
+              <a href={`/posts/${item.post.id}/`}>{item.post.data.title}</a>
+            </h2>
+            {item.post.data.description && <p class="excerpt">{item.post.data.description}</p>}
+          </li>
+        ) : (
+          <li class="feed-item photo-item">
+            <div class="meta">{fmt(item.date)} · Photo</div>
+            <h2>
+              <a href={item.photo.link}>{item.photo.title}</a>
+            </h2>
+            {item.photo.image && (
+              <a class="photo-link" href={item.photo.link}>
+                <img src={item.photo.image} alt={item.photo.title} loading="lazy" />
+              </a>
+            )}
+          </li>
+        )
+      )
+    }
+  </ul>
+  {items.length === 0 && <p>Nothing here yet.</p>}
+</Base>
