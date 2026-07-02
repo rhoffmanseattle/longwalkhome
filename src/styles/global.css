@@ -187,6 +187,16 @@ pre {
   margin-top: 2rem;
 }
 
+/* Embeds (YouTube, Vimeo, etc.) scale to full width at 16:9,
+   overriding the fixed width/height attributes in pasted embed code. */
+.prose :is(iframe, video, embed, object) {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--radius);
+}
+
 .prose blockquote {
   margin: 1.5rem 0;
   padding-left: 1rem;
