@@ -9,11 +9,17 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft)).map((pos
   post,
 }));
 
-const photos = (await getPhotos()).map((photo) => ({
-  type: 'photo' as const,
-  date: photo.date,
-  photo,
-}));
+// Cap how many photo entries appear in the home feed
+const PHOTO_LIMIT = 20;
+
+const photos = (await getPhotos())
+  .sort((a, b) => b.date.getTime() - a.date.getTime())
+  .slice(0, PHOTO_LIMIT)
+  .map((photo) => ({
+    type: 'photo' as const,
+    date: photo.date,
+    photo,
+  }));
 
 const items = [...posts, ...photos].sort((a, b) => b.date.getTime() - a.date.getTime());
 
@@ -35,10 +41,9 @@ const fmt = (d: Date) =>
           </li>
         ) : (
           <li class="feed-item photo-item">
-            <div class="meta">{fmt(item.date)} · Photo</div>
-            <h2>
-              <a href={item.photo.link}>{item.photo.title}</a>
-            </h2>
+            <div class="meta">
+              {fmt(item.date)} · <a href={item.photo.link}>Photo{item.photo.album ? ` · ${item.photo.album}` : ''}</a>
+            </div>
             {item.photo.image && (
               <a class="photo-link" href={item.photo.link}>
                 <img src={item.photo.image} alt={item.photo.title} loading="lazy" />

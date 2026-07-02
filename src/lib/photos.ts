@@ -9,7 +9,7 @@ import { XMLParser } from 'fast-xml-parser';
  */
 
 const FEED_URL =
-  import.meta.env.PHOTOS_FEED_URL ?? 'https://photos.longwalkhome.net/rss';
+  import.meta.env.PHOTOS_FEED_URL ?? 'https://photo.longwalkhome.net/feed.xml';
 
 export interface PhotoItem {
   title: string;
@@ -17,6 +17,13 @@ export interface PhotoItem {
   date: Date;
   image: string | null;
   description: string | null;
+  album: string | null;
+}
+
+function albumFrom(html: string | null): string | null {
+  if (!html) return null;
+  const m = html.match(/ALBUM\s+([^\n<]+)/);
+  return m ? m[1].trim() : null;
 }
 
 function firstImgSrc(html: string | undefined): string | null {
@@ -65,12 +72,14 @@ export async function getPhotos(): Promise<PhotoItem[]> {
             asArray(item['media:content'])[0]?.['@_url'] ??
             item['media:thumbnail']?.['@_url'] ??
             firstImgSrc(text(item['content:encoded']) ?? text(item.description) ?? undefined);
+          const description = text(item.description);
           return {
             title: text(item.title) ?? 'Untitled',
             link: text(item.link) ?? FEED_URL,
             date,
             image: image ?? null,
-            description: text(item.description),
+            description,
+            album: albumFrom(description),
           };
         })
         .filter((p): p is PhotoItem => p !== null);
@@ -92,12 +101,14 @@ export async function getPhotos(): Promise<PhotoItem[]> {
             links.find((l: any) => l['@_rel'] === 'enclosure')?.['@_href'] ??
             asArray(entry['media:content'])[0]?.['@_url'] ??
             firstImgSrc(text(entry.content) ?? text(entry.summary) ?? undefined);
+          const description = text(entry.summary);
           return {
             title: text(entry.title) ?? 'Untitled',
             link: alt ?? FEED_URL,
             date,
             image: image ?? null,
-            description: text(entry.summary),
+            description,
+            album: albumFrom(description),
           };
         })
         .filter((p): p is PhotoItem => p !== null);

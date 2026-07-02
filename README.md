@@ -22,9 +22,9 @@ Push to `main` and Netlify builds and publishes automatically. Set `draft: true`
 
 ## Photos feed
 
-At build time the site fetches the RSS feed from photos.longwalkhome.net and interleaves photo entries with posts in the home feed, sorted by date. If the feed is unreachable the build still succeeds, just without photos.
+At build time the site fetches the RSS feed from photo.longwalkhome.net and interleaves photo entries with posts in the home feed, sorted by date. If the feed is unreachable the build still succeeds, just without photos.
 
-- Feed URL defaults to `https://photos.longwalkhome.net/rss`; override with the `PHOTOS_FEED_URL` environment variable (set it in Netlify site settings).
+- Feed URL defaults to `https://photo.longwalkhome.net/feed.xml`; override with the `PHOTOS_FEED_URL` environment variable (set it in Netlify site settings).
 - New photos appear on the next build. To pick them up without writing a post, trigger a rebuild (Netlify build hook), or set up a scheduled daily rebuild.
 
 ## Styling
