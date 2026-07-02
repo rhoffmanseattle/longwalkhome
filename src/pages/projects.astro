@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+
+const projects = [
+  {
+    name: 'Shouldyoubuythiscamera.com',
+    url: 'https://shouldyoubuythiscamera.com',
+    blurb:
+      "This grew out of an obsession with cameras. I was spending an unreasonable amount of time looking up prices, comparing features, etc. I built a tool that consolidates that work and automates. I would say this is version .5. It works, it can be much better.",
+    image: '/images/projects/shouldyoubuythiscamera.jpg',
+  },
+  {
+    name: 'slicer.longwalkhome.net',
+    url: 'https://slicer.longwalkhome.net',
+    blurb:
+      'This is simple little tool to take wide photos and automatically slice them up for use on Instagram.',
+    image: '/images/projects/slicer.jpg',
+  },
+  {
+    name: 'Seen.longwalkhome.net',
+    url: 'https://seen.longwalkhome.net',
+    blurb:
+      'Out of date, but an automatically generated list of books, movies, music that read/watched/heard this year.',
+    image: '/images/projects/seen.jpg',
+  },
+  {
+    name: 'photos.longwalkhome.net',
+    url: 'https://photo.longwalkhome.net',
+    blurb:
+      'This is the (unnecessary) custom front-end to my Flickr profile for photography.',
+    image: '/images/projects/photo.jpg',
+  },
+  {
+    name: 'Parkbound.app',
+    url: 'https://parkbound.app',
+    blurb:
+      'This is a WAY OVER THE TOP site I built to plan national park visit. It has over 1000 pages just on the specific species one would find at the parks, it lets you complete missions, it has accounts. I made it while on a roadtrip through Utah to visit some national parks.',
+    image: '/images/projects/parkbound.jpg',
+  },
+];
+---
+
+<Base title="Projects" description="Side projects by Ryan Hoffman">
+  <h1>Projects</h1>
+  <p>As time and interest permit, I dabble in some side projects:</p>
+  <ul class="projects">
+    {
+      projects.map((p) => (
+        <li class="project">
+          <h2>
+            <a href={p.url}>{p.name}</a>
+          </h2>
+          <p>{p.blurb}</p>
+          <a class="project-shot" href={p.url}>
+            <img src={p.image} alt={`Screenshot of ${p.name}`} loading="lazy" width="1440" height="900" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

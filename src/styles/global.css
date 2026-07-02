@@ -171,6 +171,32 @@ pre {
   border: 1px solid var(--color-border);
 }
 
+/* Projects */
+
+.projects {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project {
+  margin: 0 0 3rem;
+}
+
+.project h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.3rem;
+}
+
+.project p {
+  margin: 0 0 0.75rem;
+}
+
+.project-shot img {
+  display: block;
+  border: 1px solid var(--color-border);
+}
+
 /* Post pages */
 
 .post-header .meta {
