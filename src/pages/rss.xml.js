@@ -5,7 +5,7 @@ export async function GET(context) {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
   posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
   return rss({
-    title: 'Long Walk Home',
+    title: 'longwalkhome',
     description: 'Writing and photos by Ryan Hoffman',
     site: context.site,
     items: posts.map((post) => ({

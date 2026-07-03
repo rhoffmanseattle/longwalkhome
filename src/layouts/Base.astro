@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const pageTitle = title ? `${title} · Long Walk Home` : 'Long Walk Home';
+const pageTitle = title ? `${title} · longwalkhome` : 'longwalkhome';
 ---
 
 <!doctype html>
@@ -17,12 +17,12 @@ const pageTitle = title ? `${title} · Long Walk Home` : 'Long Walk Home';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     {description && <meta name="description" content={description} />}
-    <link rel="alternate" type="application/rss+xml" title="Long Walk Home" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="longwalkhome" href="/rss.xml" />
   </head>
   <body>
     <div class="wrap">
       <header class="site-header">
-        <a class="site-title" href="/">Long Walk Home</a>
+        <a class="site-title" href="/">longwalkhome</a>
         <nav>
           <a href="/">Home</a>
           <a href="/projects/">Projects</a>

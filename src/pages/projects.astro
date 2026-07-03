@@ -29,6 +29,7 @@ const projects = [
     blurb:
       'This is the (unnecessary) custom front-end to my Flickr profile for photography.',
     image: '/images/projects/photo.jpg',
+    github: 'https://github.com/rhoffmanseattle/Photo-App',
   },
   {
     name: 'Parkbound.app',
@@ -51,6 +52,11 @@ const projects = [
             <a href={p.url}>{p.name}</a>
           </h2>
           <p>{p.blurb}</p>
+          {p.github && (
+            <p class="project-github">
+              <a href={p.github}>GitHub</a>
+            </p>
+          )}
           <a class="project-shot" href={p.url}>
             <img src={p.image} alt={`Screenshot of ${p.name}`} loading="lazy" width="1440" height="900" />
           </a>
