@@ -153,11 +153,14 @@ pre {
 .feed-filter button {
   position: relative;
   z-index: 1;
+  flex: 1 1 50%;
   padding: 0.4rem 0.9rem;
   border: 0;
   background: transparent;
   border-radius: 999px;
   font-size: 0.85rem;
+  white-space: nowrap;
+  text-align: center;
   color: var(--color-muted);
   cursor: pointer;
 }
