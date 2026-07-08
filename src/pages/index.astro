@@ -31,6 +31,11 @@ const fmt = (d: Date) =>
 ---
 
 <Base description="Long Walk Home — writing and photos by Ryan Hoffman">
+  <div class="feed-filter" data-active="all">
+    <div class="slider-thumb"></div>
+    <button type="button" class="filter-btn" data-filter="posts" aria-pressed="false">Posts</button>
+    <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">Posts + Pics</button>
+  </div>
   <ul class="feed">
     {
       items.map((item) =>
@@ -65,3 +70,34 @@ const fmt = (d: Date) =>
   </ul>
   {items.length === 0 && <p>Nothing here yet.</p>}
 </Base>
+
+<script>
+  const STORAGE_KEY = 'lwh-feed-filter';
+  const filterEl = document.querySelector<HTMLElement>('.feed-filter');
+  const feed = document.querySelector<HTMLElement>('.feed');
+
+  if (filterEl && feed) {
+    const buttons = filterEl.querySelectorAll<HTMLButtonElement>('.filter-btn');
+
+    const applyFilter = (filter: string) => {
+      feed.classList.toggle('filter-posts-only', filter === 'posts');
+      filterEl.dataset.active = filter;
+      buttons.forEach((btn) => {
+        const active = btn.dataset.filter === filter;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', String(active));
+      });
+    };
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+    applyFilter(saved === 'posts' ? 'posts' : 'all');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter ?? 'all';
+        applyFilter(filter);
+        localStorage.setItem(STORAGE_KEY, filter);
+      });
+    });
+  }
+</script>
