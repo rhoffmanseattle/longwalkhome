@@ -2,11 +2,14 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { getPhotos } from '../lib/photos';
+import { getFirstImage, getAutoExcerpt } from '../lib/postExcerpt';
 
 const posts = (await getCollection('posts', ({ data }) => !data.draft)).map((post) => ({
   type: 'post' as const,
   date: post.data.date,
   post,
+  image: getFirstImage(post.body ?? ''),
+  excerpt: post.data.description ?? getAutoExcerpt(post.body ?? ''),
 }));
 
 // Cap how many photo entries appear in the home feed
@@ -33,11 +36,17 @@ const fmt = (d: Date) =>
       items.map((item) =>
         item.type === 'post' ? (
           <li class="feed-item post-item">
+            {item.image && (
+              <a class="post-thumb" href={`/posts/${item.post.id}/`} tabindex="-1">
+                <img src={item.image} alt="" loading="lazy" />
+              </a>
+            )}
             <div class="meta">{fmt(item.date)}</div>
             <h2>
               <a href={`/posts/${item.post.id}/`}>{item.post.data.title}</a>
             </h2>
-            {item.post.data.description && <p class="excerpt">{item.post.data.description}</p>}
+            {item.excerpt && <p class="excerpt">{item.excerpt}</p>}
+            <a class="read-more" href={`/posts/${item.post.id}/`}>Read more →</a>
           </li>
         ) : (
           <li class="feed-item photo-item">
