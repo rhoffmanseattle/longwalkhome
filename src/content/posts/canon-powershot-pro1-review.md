@@ -36,11 +36,11 @@ Here it is in action:
 
 Here's a handful of shots from my first *roll* with it, so to speak.
 
-![IMG_2848](https://live.staticflickr.com/65535/55398315484_b05e600320_b.jpg)
-[View full size](https://photo.longwalkhome.net/p/55398315484/)
-
 ![IMG_2845](https://live.staticflickr.com/65535/55398140471_bcd40e4c99_b.jpg)
 [View full size](https://photo.longwalkhome.net/p/55398140471/)
+
+![IMG_2848](https://live.staticflickr.com/65535/55398315484_b05e600320_b.jpg)
+[View full size](https://photo.longwalkhome.net/p/55398315484/)
 
 ![IMG_2843](https://live.staticflickr.com/65535/55398264508_afcb30c24b_b.jpg)
 [View full size](https://photo.longwalkhome.net/p/55398264508/)
