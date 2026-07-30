@@ -38,6 +38,13 @@ const projects = [
       'This is a WAY OVER THE TOP site I built to plan national park visit. It has over 1000 pages just on the specific species one would find at the parks, it lets you complete missions, it has accounts. I made it while on a roadtrip through Utah to visit some national parks.',
     image: '/images/projects/parkbound.jpg',
   },
+  {
+    name: 'pnwbirding.longwalkhome.net',
+    url: 'https://pnwbirding.longwalkhome.net',
+    blurb:
+      "If you haven't noticed, I fancy myself a birder (of the most blurry kind). I had the chance to go to a great site in Eastern Washington and now wanted to build an itinerary for others. This site is meant to help make that easy. It pulls from iBird's API and some great local resources (attributed throughout the site).",
+    github: 'https://github.com/rhoffmanseattle/pnwbirding',
+  },
 ];
 ---
 
@@ -57,9 +64,11 @@ const projects = [
               <a href={p.github}>GitHub</a>
             </p>
           )}
-          <a class="project-shot" href={p.url}>
-            <img src={p.image} alt={`Screenshot of ${p.name}`} loading="lazy" width="1440" height="900" />
-          </a>
+          {p.image && (
+            <a class="project-shot" href={p.url}>
+              <img src={p.image} alt={`Screenshot of ${p.name}`} loading="lazy" width="1440" height="900" />
+            </a>
+          )}
         </li>
       ))
     }
