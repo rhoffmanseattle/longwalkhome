@@ -27,7 +27,7 @@ const photos = (await getPhotos())
 const items = [...posts, ...photos].sort((a, b) => b.date.getTime() - a.date.getTime());
 
 const fmt = (d: Date) =>
-  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 ---
 
 <Base description="Long Walk Home — writing and photos by Ryan Hoffman">

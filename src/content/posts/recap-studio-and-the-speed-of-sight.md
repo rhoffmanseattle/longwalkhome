@@ -7,7 +7,7 @@ I get overly nostalgic (or perhaps I get THE EXACT RIGHT amount of nostalgic). T
 
 I was scrubbing through Lightroom last night, moving as quickly through photos taken in the month of July as possible, and I was struck by how well the images were visible and fun to watch at high-speed. This morning, I got up before the family for some quality PSALABGO (Porch Sitting And Looking At Birds and Goofing Off) and started putting together some scripts that could help me produce the video in a more structured way. Once those worked, I converted them into a VERY simple macOS Native Application.
 
-I am pretty happy with the tool.
+I am pretty happy with the tool. [Code's on GitHub](https://github.com/rhoffmanseattle/Photo-recap-builder) if you want to peek.
 
 ![Recap Studio's interface](/images/projects/recap-studio.jpg)
 
