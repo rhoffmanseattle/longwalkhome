@@ -53,6 +53,14 @@ const projects = [
       'This started as a way to answer one question for myself: where should I go walk right now? It pulls live light, weather, tide, and bird-activity data for eight West Seattle parks and scores each one, then tells you which spot is best at this exact moment.',
     github: 'https://github.com/rhoffmanseattle/Spots',
   },
+  {
+    name: 'Recap Studio',
+    url: 'https://github.com/rhoffmanseattle/Photo-recap-builder',
+    blurb:
+      "I built this out to experiment with taking a month's worth of photos into a single SUPER FAST recap video. After some feedback, MAYBE 1700 images in 2 minutes is too much. So I added features to control length, speed, and scope.",
+    image: '/images/projects/recap-studio.jpg',
+    video: 'https://www.youtube.com/shorts/BU7pp3udcnk',
+  },
 ];
 ---
 
@@ -67,9 +75,11 @@ const projects = [
             <a href={p.url}>{p.name}</a>
           </h2>
           <p>{p.blurb}</p>
-          {p.github && (
-            <p class="project-github">
-              <a href={p.github}>GitHub</a>
+          {(p.github || p.video) && (
+            <p class="project-links">
+              {p.github && <a href={p.github}>GitHub</a>}
+              {p.github && p.video && ' · '}
+              {p.video && <a href={p.video}>Watch example</a>}
             </p>
           )}
           {p.image && (
