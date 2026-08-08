@@ -126,7 +126,8 @@ pre {
 
 .feed-filter {
   position: relative;
-  display: inline-flex;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
   padding: 3px;
   margin-bottom: 2rem;
   background: var(--color-card);
@@ -153,7 +154,6 @@ pre {
 .feed-filter button {
   position: relative;
   z-index: 1;
-  flex: 1 1 50%;
   padding: 0.4rem 0.9rem;
   border: 0;
   background: transparent;
